@@ -19,25 +19,32 @@ addExpenses.addEventListener("click",function(e){
     dateInput.value = ""
     amountInput.value = ""
     console.log(dataArray)
-    render(dataArray,collectedData);
+    // render(dataArray,collectedData);
+
 })
 
-function render(array,object){
-    for(let i=0; i<1; i++){
-       let row = document.createElement("tr");
-       let nameCell = document.createElement("th")
-            nameCell.textContent = object.name;
-       let dateCell = document.createElement("th")
-            dateCell.textContent = object.date;
-       let amountCell = document.createElement("th")
-           amountCell.textContent = object.amount;
+// function render(array,object){
+//     for(let i=0; i<1; i++){
+//        let row = document.createElement("tr");
+//        let nameCell = document.createElement("th")
+//             nameCell.textContent = object.name;
+//        let dateCell = document.createElement("th")
+//             dateCell.textContent = object.date;
+//        let amountCell = document.createElement("th")
+//            amountCell.textContent = object.amount;
+//
+//        row.appendChild(nameCell);
+//        row.appendChild(dateCell);
+//        row.appendChild(amountCell);
+//
+//         thetable.appendChild(row);
+//
+//         console.log('howdy');
+//     }
+// }
 
-       row.appendChild(nameCell);
-       row.appendChild(dateCell);
-       row.appendChild(amountCell);
-
-        thetable.appendChild(row);
-    }
+function test(){
+    console.log('howdy')
 }
 
 

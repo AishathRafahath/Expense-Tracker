@@ -37,6 +37,7 @@ function render(object){
        row.appendChild(nameCell);
        row.appendChild(dateCell);
        row.appendChild(amountCell);
+       console.log('no');
 
         thetable.appendChild(row);
 

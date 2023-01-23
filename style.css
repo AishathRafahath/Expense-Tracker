@@ -48,17 +48,27 @@ form{
 table{
     /*background-color: yellow;*/
     width: 100%;
+    border-collapse: collapse;
 }
 
 .header {
     border:1px solid gray;
     margin: 0;
+    background-color: lightgray;
 }
 
 th{
     /*background-color: gray;*/
+    border: 1px solid gray;
 }
 
+.btnHeaderCell{
+    width: 100px;
+}
+
+.del{
+    margin-right: 100%;
+}
 .resultRows{
     background: lightgray;
     color: black;

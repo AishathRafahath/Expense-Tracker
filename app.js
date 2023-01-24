@@ -4,13 +4,13 @@ let dateInput = document.getElementById('date_input');
 let amountInput = document.getElementById('amount_input');
 let addExpenses = document.getElementById('add_Expenses');
 let thetable = document.getElementById('table');
-
+let count = -1;
 let dataArray = []
-console.log('yo');
+let collectedData = {};
 
 addExpenses.addEventListener("click",function(e){
     e.preventDefault();
-    let collectedData = {
+    collectedData = {
         name: nameInput.value,
         date: dateInput.value,
         amount: amountInput.value
@@ -19,15 +19,18 @@ addExpenses.addEventListener("click",function(e){
     nameInput.value = ""
     dateInput.value = ""
     amountInput.value = ""
-    console.log(dataArray);
-    render(collectedData);
+    render(dataArray);
 
 
 })
 
 function render(object){
+
+
     for(let i=0; i<1; i++){
+        count ++;
        let row = document.createElement("tr");
+       row.setAttribute("id",`row${count}`)
        let nameCell = document.createElement("th");
             nameCell.textContent = object.name;
        let dateCell = document.createElement("th");
@@ -38,32 +41,27 @@ function render(object){
         let delBtn = document.createElement("button")
             delBtn.textContent = "x"
             delBtn.className = "del"
+
             delBtn.addEventListener("click",function(){
-                deleteRow()
+                return function deleteRow(count){
+                    let idkwhatimdoing = document.getElementById(`row${count}`)
+                    idkwhatimdoing.remove()
+
+                }
             })
 
-
+        // console.log(count);
+        console.log(dataArray)
 
        row.appendChild(nameCell);
        row.appendChild(dateCell);
        row.appendChild(amountCell);
        delCell.appendChild(delBtn);
        row.appendChild(delCell);
-       console.log('no');
+       thetable.appendChild(row);
 
-        thetable.appendChild(row);
-
-        console.log('howdy');
     }
 }
-
-function deleteRow(){
-
-}
-
-
-
-
-
-// When i input something and when i press enter I want to console log howdy
+// button removes item from array
+// displays new array on page
 

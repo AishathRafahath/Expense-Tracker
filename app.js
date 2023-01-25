@@ -5,10 +5,14 @@ const addExpenses = document.getElementById('add_Expenses');
 const tableBody = document.getElementById('table-Body');
 let expenseArray = [];
 let dataObject = {}
+let count = -1;
 
 // document.getElementById('name_input');
 // document.getElementById('name_input');
-
+window.addEventListener("load",function (){
+    let arr = JSON.parse(localStorage.getItem("spendings"))
+    renderExpenses(arr,count);
+ })
 
 
 addExpenses.addEventListener("click",function(e){
@@ -21,31 +25,35 @@ addExpenses.addEventListener("click",function(e){
     }
 
     expenseArray.push(dataObject);
-
-    renderExpenses(expenseArray)
+    localStorage.setItem("spendings",JSON.stringify(expenseArray))
+    count++;
+    console.log(count);
+    renderExpenses(expenseArray,count)
 
     /* works */
    
 })
 
-function renderExpenses(array){
+function renderExpenses(array,id){
 // I want to scan through the array, pick each object and and put its values in it's respective cells.
     tableBody.innerHTML = ""
+
     for(let i = 0; i<array.length; i++){
         tableBody.innerHTML += `
            <tr>
             <td class="name">${array[i].spentOn}</td>
             <td class="date">${array[i].date}</td>
             <td class="amount">${array[i].amount}</td>
-            <td><button onclick="del()">x</button</td>
+            <td><button onclick="del(id)">x</button</td>
            </tr>
         `
     }
 }
 
-function del(id){
-    expenseArray.splice(id,1);
+function del(index){
+    expenseArray.splice(index,1);
     renderExpenses(expenseArray);
+    localStorage.setItem("spendings",JSON.stringify(expenseArray))
 }
 
 

@@ -4,13 +4,68 @@
 
 *{
       font-family: 'Roboto', sans-serif;
+      box-sizing: border-box;
+}
+
+body{
+    background-color: #eae3dc;
+}
+
+h1{
+    /* background-color: yellow; */
+
+}
+
+h4{
+    /* background-color: purple; */
+    margin-top: -15px
+}
+
+
+
+form{
+    /* background-color: red; */
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+button{
+    background-color: #7798c1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#add-budget{
+    height: 30px;
+    width: 60px;
+}
+
+input{
+    height: 35px;
+    padding-left: 10px;
+    background-color: #F6F6F6;
+    border: none;
+    border-radius: 8px;
+}
+
+input:focus{
+    background-color: white;
+    box-shadow: 1px 0px 3px 2px #e3e3e3;
+    outline: none;
 }
 
 .container{
-    /*background-color: red;*/
-    width: fit-content;
+    background-color: rgb(255, 255, 255);
+    width: 600px;
     margin: 100px auto;
     padding: 20px;
+    /* border: 4px solid #8381b3; */
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px #bababa;
 }
 
 .titles{
@@ -24,7 +79,8 @@ form{
 }
 
 #amount_input{
-    width: 50.5%;
+    width: 56.5%;
+    border-radius: 0px 8px 8px 0px;
 }
 
 #name_input{
@@ -34,15 +90,21 @@ form{
 }
 
 #date_input{
-    margin-left: 10px;
-    width: 30%;
+    border-radius: 8px 0 0 8px;
+    width: 32%;
+}
+
+.budgetaddbox{
+    /* background-color: red; */
+    width: fit-content;
+    margin-left: 55px;
 }
 
 #add_Expenses{
-    margin: 20px;
-    margin-left: 40%;
+    margin: 15px auto;
     width: 150px;
-    height: 50px;
+    height: 40px;
+    font-size: 15px;
 }
 
 table{
@@ -51,10 +113,25 @@ table{
     border-collapse: collapse;
 }
 
+tbody{
+    text-align: center;
+}
+
 .header {
-    border:1px solid gray;
+    height: 30px;
+    border:1px solid rgb(225, 183, 160);
     margin: 0;
-    background-color: lightgray;
+    color: rgb(250, 243, 231);
+    background-color: rgb(187, 137, 109);
+}
+
+.bodyRow{
+    border:1px solid rgb(225, 183, 160);
+    height: 30px;
+}
+
+.Cell{
+    border:1px solid rgb(225, 183, 160);
 }
 
 th{
@@ -69,9 +146,25 @@ th{
 .del{
     margin-right: 100%;
 }
+
+.delBtn{
+    background-color: rgb(137, 67, 26);
+}
 .resultRows{
     background: lightgray;
     color: black;
 
 }
 
+td{
+    border: 1px solid gray;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}

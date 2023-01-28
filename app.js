@@ -1,62 +1,118 @@
-const nameInput = document.getElementById('name_input');
-const dateInput = document.getElementById('date_input');
-const amountInput = document.getElementById('amount_input');
-const addExpenses = document.getElementById('add_Expenses');
-const tableBody = document.getElementById('table-Body');
-let expenseArray = [];
-let dataObject = {}
-let count = -1;
+let nameInput = document.getElementById("name_input");
+let dateInput = document.getElementById("date_input");
+let amountInput = document.getElementById("amount_input");
+let addBtn = document.getElementById("add_Expenses");
+let tableBody = document.getElementById("table-Body");
+let budgetInput = document.getElementById("budget_input");
+let budgetvalue = document.getElementById("budget-value");
+let addBudget = document.getElementById("add-budget");
+let inputObject = {};
+let inputArray = [];
 
-// document.getElementById('name_input');
-// document.getElementById('name_input');
-window.addEventListener("load",function (){
-    let arr = JSON.parse(localStorage.getItem("spendings"))
-    renderExpenses(arr,count);
- })
+// if(budgetvalue.value){
+//     window.addEventListener("load",function(){
+//         budgetvalue.textContent = localStorage.getItem("budgetValue")
+//     })
+// }
 
 
-addExpenses.addEventListener("click",function(e){
-    e.preventDefault();
-    dataObject = {
-     spentOn: nameInput.value,
-     date: dateInput.value,
-     amount: amountInput.value
 
+let value = localStorage.getItem("budgetValue")
+budgetvalue.textContent = value;
+
+addBudget.addEventListener("click",function(){
+    if(budgetInput.value && budgetInput.value > 0){
+        budgetvalue.textContent = budgetInput.value;
+        localStorage.setItem("budgetValue",budgetvalue.textContent)
     }
-
-    expenseArray.push(dataObject);
-    localStorage.setItem("spendings",JSON.stringify(expenseArray))
-    count++;
-    console.log(count);
-    renderExpenses(expenseArray,count)
-
-    /* works */
-   
+    
+    
 })
 
-function renderExpenses(array,id){
-// I want to scan through the array, pick each object and and put its values in it's respective cells.
-    tableBody.innerHTML = ""
 
-    for(let i = 0; i<array.length; i++){
-        tableBody.innerHTML += `
-           <tr>
-            <td class="name">${array[i].spentOn}</td>
-            <td class="date">${array[i].date}</td>
-            <td class="amount">${array[i].amount}</td>
-            <td><button onclick="del(id)">x</button</td>
-           </tr>
-        `
+
+    let dataFromstorage = JSON.parse(localStorage.getItem("inputData"));
+    if(dataFromstorage){
+        inputArray = dataFromstorage;
+        renderExpenses(inputArray)
     }
+
+
+addBtn.addEventListener("click",function(e){
+    if((nameInput.value)&&(dateInput.value)&&(amountInput.value)){
+    e.preventDefault();
+     inputObject = {
+        name : nameInput.value,
+        date : dateInput.value,
+        amount : amountInput.value
+    }
+
+    inputArray.push(inputObject)
+    localStorage.setItem("inputData",JSON.stringify(inputArray))
+    renderExpenses(inputArray)
+
+   let value =  budgetvalue.textContent;
+   let changedValue = +value
+   let newValue = changedValue - inputObject.amount;
+   budgetvalue.textContent = newValue;
+   localStorage.setItem("budgetValue",budgetvalue.textContent);
+}
+    nameInput.value = "";
+    dateInput.value = "";
+    amountInput.value = "";
+
+})
+
+function renderExpenses(array){
+    tableBody.innerHTML = ""
+    array.forEach(function(object,index){
+        let row = document.createElement("tr");
+        row.className = "bodyRow"
+        let nameCell = document.createElement("td");
+            nameCell.innerText = object.name;
+            nameCell.className = "Cell"
+        let dateCell = document.createElement("td");
+            dateCell.innerText = object.date;
+            dateCell.className = "Cell"
+        let amountCell = document.createElement("td");
+            amountCell.innerText = object.amount
+            amountCell.className = "Cell"
+        let btnCell = document.createElement("td");
+        btnCell.className = "Cell"
+        let btnEl = document.createElement("button");
+            btnEl.innerText = "x"
+            btnEl.className = "delBtn"
+
+            btnEl.addEventListener("click",function(){
+                deleteObject(object,index)
+            })
+
+            tableBody.appendChild(row);
+            row.appendChild(nameCell)
+            row.appendChild(dateCell)
+            row.appendChild(amountCell)
+            row.appendChild(btnCell)
+            btnCell.appendChild(btnEl);
+
+            console.log(index)
+
+    })
 }
 
-function del(index){
-    expenseArray.splice(index,1);
-    renderExpenses(expenseArray);
-    localStorage.setItem("spendings",JSON.stringify(expenseArray))
+function deleteObject(obj,id){
+  
+    let add = budgetvalue.textContent;
+    let changedtoNumber = +add;
+    let objamountToNum = +obj.amount
+    let newValue = changedtoNumber + objamountToNum;
+    budgetvalue.textContent = newValue;
+    value = localStorage.setItem("budgetValue",budgetvalue.textContent)
+    console.log(newValue)
+   
+    
+    inputArray.splice(id,1);
+    localStorage.setItem("inputData",JSON.stringify(inputArray))
+    renderExpenses(inputArray);
+
 }
-
-
-
-
 

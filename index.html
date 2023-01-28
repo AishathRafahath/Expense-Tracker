@@ -10,16 +10,24 @@
 
         <div class="titles">
         <h1>Expense Tracker</h1>
-        <h3>Add a new item</h3>
+        <di>
+            <h4>Budget: <span id="budget-value"></span></h4>
+        </di>
+       
         </div>
+        <div class="budgetaddbox">
+            <input type="number" name="" id="budget_input" placeholder="Budget">
+            <button id="add-budget">Add</button>
+        </div>
+        
 
         <form action="">
-            <label for="name_input">Name</label>
-            <input type="text" id="name_input" required>
-            <label for="date_input">Date</label>
+            
+            <br>
+            <input type="text" id="name_input" required placeholder="Name">
             <input type="date" id="date_input" required>
-            <label for="amount_input">Amount</label>
-            <input type="number" id="amount_input" required>
+        
+            <input type="number" id="amount_input" required placeholder="Amount">
             <button type="submit" id="add_Expenses">Add expense</button>
         </form>
         <br>
